@@ -1,5 +1,7 @@
 class ToDoList {
+    static uniqueId = 1;
     constructor(taskHeading, toDoName, dueDate, priority) {
+        this.id = this.generateId();
         this.taskHeading = taskHeading;
         this.toDoName = toDoName;
         this.dueDate = dueDate;
@@ -18,8 +20,11 @@ class ToDoList {
         return this.dueDate;
     }
     editToDotaskHeading(newTaskHeading) {
-        this.taskHeading = newtaskHeading;
+        this.taskHeading = newTaskHeading;
         return this.taskHeading;
+    }
+    generateId(){
+        return ToDoList.uniqueId++;
     }
 }
 
@@ -35,7 +40,6 @@ form.addEventListener("submit", (e) => {
     const chores = Object.assign({}, new ToDoList(taskHeading, taskName, dueDate, taskPriority));
     allActivity(chores)
     addToDoItem(toDoActivities)
-
     console.log(toDoActivities)
     form.reset();
 })
@@ -78,7 +82,12 @@ function allActivity(toDoObject) {
 }
 
 function sortActivityPriority(toDoActivitiesArray) {
-
+    // Implementing
 }
 
-
+function editToDoTask(taskName){
+    if(toDoActivities.length > 1){
+        const editButton = document.createElement("button")
+    }
+    return ToDoList.editToDoTask(taskName);
+}
