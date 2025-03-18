@@ -48,10 +48,13 @@ function addToDoItem(toDoArray) {
     const lastChild = [...toDoArray]
     const displayContDiv = document.querySelector(".displayToDo")
     const displayDiv = document.createElement("div")
+    displayDiv.classList.add("divSpacing")
     displayContDiv.appendChild(displayDiv)
+    displayContDiv.classList.remove("none")
     const taskH2 = document.createElement("h2")
     const taskSpan = document.createElement("span")
     const dueDate = document.createElement("span")
+    const priority = document.createElement("p")
     const deleteBtn = document.createElement("button")
     const breakLine = document.createElement("br")
 
@@ -61,6 +64,8 @@ function addToDoItem(toDoArray) {
     deleteBtn.textContent = ` Delete`
     taskSpan.textContent = lastChild[0].toDoName
     dueDate.textContent = lastChild[0].dueDate
+    priority.textContent  = `The priority level is: ${lastChild[0].priority}`
+    priorityItem(lastChild[0].priority, displayDiv)
     displayDiv.appendChild(taskH2)
 
     displayDiv.appendChild(document.createTextNode("The task is: "));
@@ -68,11 +73,12 @@ function addToDoItem(toDoArray) {
     displayDiv.appendChild(breakLine)
     displayDiv.appendChild(document.createTextNode("The due date is: "));
     displayDiv.appendChild(dueDate)
+    displayDiv.appendChild(priority)
     displayDiv.appendChild(deleteBtn)
 }
 
 function deleteTodo(e) {
-    // Implement Logic
+    // Implement more Logic
     e.target.parentNode.remove()
     //delete toDoObject;
 }
@@ -81,13 +87,26 @@ function allActivity(toDoObject) {
     toDoActivities.unshift(toDoObject)
 }
 
+// Work in progress
 function sortActivityPriority(toDoActivitiesArray) {
     // Implementing
 }
 
+// Work in progress
 function editToDoTask(taskName){
     if(toDoActivities.length > 1){
         const editButton = document.createElement("button")
     }
     return ToDoList.editToDoTask(taskName);
+}
+function priorityItem(priorityVal, div){
+    const priorityIndex = parseInt(priorityVal);
+    console.log(priorityIndex)
+    if(priorityIndex >= 4){
+        div.classList.add("critical")
+    } else if(priorityIndex == 3){
+        div.classList.add("medium")
+    } else{
+        div.classList.add("low")
+    }
 }
